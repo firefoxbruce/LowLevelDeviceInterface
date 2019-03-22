@@ -1,11 +1,18 @@
-#ifndef _DEVICE_MACRO_H
-#define _DEVICE_MACRO_H
+#ifndef __WYW_DEVICE_MACRO_H__
+#define __WYW_DEVICE_MACRO_H__
+
 
 /**********define the target platform begin************/
 #define WYW_MCU_PLATFORM
 #define WYW_ARM_LINUX_PLATFORM
 #define WYW_ARM_ANDROID_PLATFORM
 /**********define the target platform end************/
+
+/**********define the printf switch only for mcu begin************/
+#ifdef WYW_MCU_PLATFORM
+//#define WYW_PRINTF_SWITCH_OFF
+#endif
+/**********define the printf switch only for mcu end***********/
 
 /**********define debug log level begin***********/
 //#define WYW_NORMAL_LOG
@@ -32,9 +39,15 @@
 
 /**********define the LOG PRINTF begin************/
 #ifdef WYW_MCU_PLATFORM
-  #define WYW_PRINTF()  
-  #define WYW_PRINTF_1(n1)
-  #define WYW_PRINTF_2(n1, n2)
+  #ifdef WYW_PRINTF_SWITCH_OFF
+    #define WYW_PRINTF()  
+    #define WYW_PRINTF_1(n1)
+    #define WYW_PRINTF_2(n1, n2)
+  #else
+    #define WYW_PRINTF()  
+    #define WYW_PRINTF_1(n1)
+    #define WYW_PRINTF_2(n1, n2)
+  #endif
 #elif defined WYW_ARM_LINUX_PLATFORM
   #include<stdio.h>
   #define WYW_PRINTF(n, ...) printf(WYW_LOG_TAG, n, ##__VA_ARGS__)
@@ -73,7 +86,7 @@
   #endif
 
   #define WYW_EMPTY_POINTER  ((void *)0)
-  typedef u32 vc_size_t;
+  typedef u32 wyw_size_t;
 
   #define WYW_CREAT_TIME_M(waitTime) 
   #define WYW_SET_TIME_M(waitTime, n)
@@ -100,7 +113,7 @@
   #endif
 
   #define WYW_EMPTY_POINTER  NULL
-  typedef u32 vc_size_t;
+  typedef u32 wyw_size_t;
 
   #define WYW_CREAT_TIME_M(waitTime) 
   #define WYW_SET_TIME_M(waitTime, n)
@@ -127,7 +140,7 @@
   #endif
 
   #define WYW_EMPTY_POINTER  NULL
-  typedef u32 vc_size_t;
+  typedef u32 wyw_size_t;
  
   #define WYW_CREAT_TIME_M(waitTime) 
   #define WYW_SET_TIME_M(waitTime, n)
@@ -154,7 +167,7 @@
   #endif
 
   #define WYW_EMPTY_POINTER  NULL
-  typedef u32 vc_size_t;
+  typedef u32 wyw_size_t;
 
   #define WYW_CREAT_TIME_M(waitTime) 
   #define WYW_SET_TIME_M(waitTime, n)
