@@ -21,14 +21,14 @@
                    }                                                            \
                 }
 
-s8 wyw_send(u8*data, wyw_size_t dataSize, wyw_size_t operateDelay, u8 *retryTimes)
+s8 wyw_send(u8*data, wyw_size_t *dataSize, wyw_size_t operateDelay, u8 *retryTimes)
 {
   s8 res = false;
   WYW_COMMUNICATION_M(WYW_IO_WRITE, data, dataSize, operateDelay, retryTimes);
   return res;
 }
 
-s8 wyw_recive(u8*buf, wyw_size_t bufSize, wyw_size_t operateDelay, u8 *retryTimes)
+s8 wyw_recive(u8*buf, wyw_size_t *bufAReadSize, wyw_size_t operateDelay, u8 *retryTimes)
 {
   s8 res = false;
   WYW_COMMUNICATION_M(WYW_IO_READ, buf, bufSize, operateDelay, retryTimes);
